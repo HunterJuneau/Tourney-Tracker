@@ -22,6 +22,10 @@ namespace Tourney_Tracker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IConfiguration>(Configuration);
+            services.AddTransient<GameParticipantRepository>();
+            services.AddTransient<GameRepository>();
+            services.AddTransient<LeagueRepository>();
+            services.AddTransient<ParticipantRepository>();
             services.AddTransient<UserRepository>();
 
             services.AddControllers().AddJsonOptions(options =>

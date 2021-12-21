@@ -15,7 +15,7 @@ namespace Tourney_Tracker.DataAccess
         }
 
         // Get Games by League Id //
-        internal IEnumerable<Game> SelectGamesByLeagueId(string id)
+        internal IEnumerable<Game> SelectGamesByLeagueId(int id)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -26,8 +26,13 @@ namespace Tourney_Tracker.DataAccess
             return db.Query<Game>(sql, new { id });
         }
 
+        internal object SelectUserLeagues(object leagueId)
+        {
+            throw new System.NotImplementedException();
+        }
+
         // Get Game by Id //
-        internal Game SelectGameById(string id)
+        internal Game SelectGameById(int id)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -40,7 +45,7 @@ namespace Tourney_Tracker.DataAccess
         }
 
         // Add New Game //
-        internal string InsertGame(Game newGame)
+        internal int InsertGame(Game newGame)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -48,11 +53,11 @@ namespace Tourney_Tracker.DataAccess
                         OUTPUT inserted.Id
                         VALUES (@leagueId, @date, @isFinal, @winner)";
 
-            return db.QueryFirstOrDefault<string>(sql, newGame);
+            return db.QueryFirstOrDefault<int>(sql, newGame);
         }
 
         // Delete Game by Id //
-        internal void DeleteGameById(string id)
+        internal void DeleteGameById(int id)
         {
             using var db = new SqlConnection(_connectionString);
 
