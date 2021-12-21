@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using Tourney_Tracker.Models;
+
 
 namespace Tourney_Tracker.DataAccess
 {
@@ -12,18 +12,6 @@ namespace Tourney_Tracker.DataAccess
         public GameParticipantRepository(IConfiguration config)
         {
             _connectionString = config.GetConnectionString("TourneyTracker");
-        }
-
-        // Get GameParticipants by Game Id //
-        internal IEnumerable<GameParticipant> SelectGameParticipantsByGameId(string id)
-        {
-            using var db = new SqlConnection(_connectionString);
-
-            var sql = @"SELECT *
-                        FROM GameParticipants
-                        WHERE GameId = @id";
-
-            return db.Query<GameParticipant>(sql, new { id });
         }
 
         // Add New GameParticipant //
@@ -38,7 +26,7 @@ namespace Tourney_Tracker.DataAccess
         }
 
         // Delete GameParticipant by Id //
-        internal void DeleteGameParticipantById(string id)
+        internal void DeleteGameParticipantById(int id)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -47,19 +35,6 @@ namespace Tourney_Tracker.DataAccess
                         WHERE Id = @id";
 
             db.Execute(sql, new { id });
-        }
-
-        // Update Game by Id //
-        internal bool UpdateGameById(int id, bool team)
-        {
-            using var db = new SqlConnection(_connectionString);
-
-            var sql = @"UPDATE GameParticipants
-                        SET Team = @team,
-                        OUTPUT inserted.Team
-                        WHERE Id = @id";
-
-            return db.QuerySingleOrDefault<bool>(sql, new { id, team });
         }
     }
 }

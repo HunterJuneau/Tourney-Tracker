@@ -48,7 +48,7 @@ namespace Tourney_Tracker.Controllers
             return Ok("You have successfully deleted this User from the Database.");
         }
 
-        //Update User //
+        // Update User //
         [HttpPut("{id}")]
         public IActionResult PutUser(string id, User user)
         {
