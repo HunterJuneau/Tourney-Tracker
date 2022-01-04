@@ -1,3 +1,8 @@
+#root {
+  min-height: 100vh;
+  background-color: #2A2137;
+}
+
 h1 {
-	color: brown;
+	color: #F4F6F5;
 }

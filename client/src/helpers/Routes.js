@@ -1,11 +1,13 @@
 import React from 'react';
 import { Routes as Switch, Route } from 'react-router-dom';
 import HomeView from '../views/HomeView';
+import LeagueView from '../views/LeagueView';
 
 export default function Routes() {
 	return (
 		<Switch>
-			<Route path='/' element={<HomeView />} />
+			<Route exact path='/' element={<HomeView />} />
+			<Route path='/league/:id' element={<LeagueView />} />
 		</Switch>
 	);
 }
