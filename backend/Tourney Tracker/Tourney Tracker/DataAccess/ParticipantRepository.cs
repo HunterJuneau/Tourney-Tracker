@@ -39,11 +39,12 @@ namespace Tourney_Tracker.DataAccess
         }
 
         // Get Participants by GameParticipants //
-        internal IEnumerable<Participant> SelectParticipantsByGameParticipants(List<GameParticipant> gameParticipants)
+        internal ParticipantsDto SelectParticipantsByGameParticipants(List<GameParticipant> gameParticipants)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var participants = new List<Participant>();
+            var team0 = new List<Participant>();
+            var team1 = new List<Participant>();
 
             for (int i = 0; i < gameParticipants.Count; i++)
             {
@@ -53,8 +54,19 @@ namespace Tourney_Tracker.DataAccess
 
                 var id = gameParticipants[i].ParticipantId;
 
-                participants.Add((Participant)db.Query<Participant>(sql, new { id }));
+                var result = db.QueryFirstOrDefault<Participant>(sql, new { id });
+
+                if (gameParticipants[i].Team)
+                { team1.Add(result); }
+                else
+                { team0.Add(result); }
             }
+
+            ParticipantsDto participants = new ParticipantsDto
+            {
+                Team0 = team0,
+                Team1 = team1
+            };
 
             return participants;
         }

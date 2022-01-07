@@ -21,6 +21,8 @@ namespace Tourney_Tracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<GameParticipantRepository>();
             services.AddTransient<GameRepository>();
@@ -47,6 +49,10 @@ namespace Tourney_Tracker
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TourneyTracker v1"));
             }
+
+            app.UseCors(
+                options => options.WithOrigins("http://localhost:3000").AllowAnyMethod()
+            );
 
             app.UseHttpsRedirection();
 
