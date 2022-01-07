@@ -8,7 +8,7 @@ export default function NavBar() {
 			<NavbarBrand href='/'>Tourney Tracker</NavbarBrand>
 			<Nav className='me-auto' navbar>
 				<NavItem>
-					<Link className='nav-link' to='/leagues'>
+					<Link className='nav-link' to='/my-leagues'>
 						My Leagues
 					</Link>
 				</NavItem>
