@@ -25,4 +25,9 @@ const getUserLeagues = (userId) =>
 			.catch(reject);
 	});
 
-export { getPublicLeagues, getUserLeagues, getLeague };
+const createLeague = (league) =>
+	new Promise((resolve, reject) => {
+		axios.post(`${dbUrl}/League`, league).then(resolve).catch(reject);
+	});
+
+export { getPublicLeagues, getUserLeagues, getLeague, createLeague };
