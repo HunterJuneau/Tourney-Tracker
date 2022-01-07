@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import LeagueCard from '../components/cards/LeagueCard';
-import { getPublicLeagues } from '../helpers/data/leagueData';
+import { getPublicLeagues, getUserLeagues } from '../helpers/data/leagueData';
 
-export default function HomeView() {
+export default function HomeView({ isPublic }) {
 	const [leagues, setLeagues] = useState([]);
 
 	useEffect(() => {
-		getPublicLeagues().then(setLeagues);
-	}, []);
+		if (isPublic) {
+			getPublicLeagues().then(setLeagues);
+		} else {
+			getUserLeagues(1).then(setLeagues);
+		}
+	}, [isPublic]);
 
 	return (
 		<>
-			<h1>Public Leagues</h1>
-			<div>DO YOU SEE ME?</div>
+			<h1>{isPublic ? 'Public' : 'My'} Leagues</h1>
 			{leagues.map((league) => (
 				<LeagueCard key={league.id} league={league} />
 			))}

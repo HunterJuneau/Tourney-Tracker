@@ -8,5 +8,5 @@ export default function GamesPane({ games }) {
 				<GameCard key={game.id} game={game} />
 			))}
 		</>
-	)
+	);
 }

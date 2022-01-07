@@ -17,4 +17,12 @@ const getLeague = (id) =>
 			.catch(reject);
 	});
 
-export { getPublicLeagues, getLeague };
+const getUserLeagues = (userId) =>
+	new Promise((resolve, reject) => {
+		axios
+			.get(`${dbUrl}/League/owner/${userId}`)
+			.then((response) => resolve(response.data))
+			.catch(reject);
+	});
+
+export { getPublicLeagues, getUserLeagues, getLeague };
