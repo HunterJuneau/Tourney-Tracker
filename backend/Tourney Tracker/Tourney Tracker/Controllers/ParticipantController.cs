@@ -31,18 +31,18 @@ namespace Tourney_Tracker.Controllers
 
         // Get Participants by GameId //
         [HttpGet("game/{gameId}")]
-        public IActionResult GetParticipantsByGameId(int id)
+        public IActionResult GetParticipantsByGameId(int gameId)
         {
-            var gameParticipants = _repo.SelectGameParticipantsByGameId(id);
+            var gameParticipants = _repo.SelectGameParticipantsByGameId(gameId);
 
             var participants = _repo.SelectParticipantsByGameParticipants(gameParticipants.ToList());
 
             if (participants == null)
             {
-                return NotFound($"No League with the Id of {id} was found.");
+                return NotFound($"No Participants with the gameId of {gameId} was found.");
             }
 
-            return Ok(participants);
+            return Ok(participants); 
         }
 
         // Add Participants //
