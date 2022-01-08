@@ -7,6 +7,7 @@ import {
 	CardText,
 	Button,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { getParticipant } from '../../helpers/data/participantData';
 import { deleteGame } from '../../helpers/data/gameData';
 
@@ -35,7 +36,16 @@ export default function GameCard({ game, leagueId, isOwner }) {
 				}`}</CardTitle>
 				<CardSubtitle>{game.date.replace('T', ' ')} UTC</CardSubtitle>
 				<CardText>{game.isFinal ? 'COMPLETED' : ''}</CardText>
-				{isOwner ? <Button onClick={deleteThis}>Delete</Button> : ''}
+				{isOwner ? (
+					<div>
+						<Button onClick={deleteThis}>Delete</Button>
+						<Link to={`/league/edit-game/${game.id}`}>
+							<Button>Edit</Button>
+						</Link>
+					</div>
+				) : (
+					''
+				)}
 			</CardBody>
 		</Card>
 	);

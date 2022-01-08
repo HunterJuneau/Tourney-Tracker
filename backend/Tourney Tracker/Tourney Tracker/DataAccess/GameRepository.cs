@@ -74,7 +74,7 @@ namespace Tourney_Tracker.DataAccess
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"UPDATE Games
-                        SET Date = @date, IsFinal = @isFinal, Winner = @winner,
+                        SET Date = @date, IsFinal = @isFinal, Winner = @winner, Participant0 = @participant0, Participant1 = @participant1
                         OUTPUT inserted.*
                         WHERE Id = @id";
             game.Id = id;

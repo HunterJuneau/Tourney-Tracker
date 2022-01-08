@@ -9,6 +9,14 @@ const getLeagueGames = (leagueId) =>
 			.catch(reject);
 	});
 
+const getGame = (gameId) =>
+	new Promise((resolve, reject) => {
+		axios
+			.get(`${dbUrl}/Game/${gameId}`)
+			.then((response) => resolve(response.data))
+			.catch(reject);
+	});
+
 const createGame = (game) =>
 	new Promise((resolve, reject) => {
 		axios.post(`${dbUrl}/Game`, game).then(resolve).catch(reject);
@@ -19,4 +27,9 @@ const deleteGame = (gameId) =>
 		axios.delete(`${dbUrl}/Game/${gameId}`).then(resolve).catch(reject);
 	});
 
-export { getLeagueGames, createGame, deleteGame };
+const updateGame = (id, game) =>
+	new Promise((resolve, reject) => {
+		axios.put(`${dbUrl}/Game/${id}`, game).then(resolve, reject).catch(reject);
+	});
+
+export { getLeagueGames, getGame, createGame, deleteGame, updateGame };

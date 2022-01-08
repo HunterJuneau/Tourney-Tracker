@@ -17,7 +17,9 @@ export default function Routes() {
 				path='/league/add-participant/:leagueId'
 				element={<ParticipantFormView />}
 			/>
+			<Route path='/league/edit-participant/:participantId' element={<ParticipantFormView />} />
 			<Route path='/league/add-game/:leagueId' element={<GameFormView />} />
+			<Route path='/league/edit-game/:gameId' element={<GameFormView />} />
 		</Switch>
 	);
 }

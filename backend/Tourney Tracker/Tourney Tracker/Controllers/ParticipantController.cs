@@ -60,7 +60,7 @@ namespace Tourney_Tracker.Controllers
         }
 
         // Update Participant //
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult PutParticipant(int id, Participant participant)
         {
             var participantToUpdate = _repo.SelectParticipantById(id);
