@@ -9,5 +9,7 @@ namespace Tourney_Tracker.Models
         public DateTime Date { get; set; }
         public bool IsFinal { get; set; } = false;
         public bool Winner { get; set; }
+        public int Participant0 { get; set; }
+        public int Participant1 { get; set; }
     }
 }

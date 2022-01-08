@@ -1,4 +1,6 @@
-﻿namespace Tourney_Tracker.Models
+﻿using System.Collections.Generic;
+
+namespace Tourney_Tracker.Models
 {
     public class Participant
     {

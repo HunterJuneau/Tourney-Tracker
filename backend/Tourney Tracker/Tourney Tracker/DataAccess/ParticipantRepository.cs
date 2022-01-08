@@ -26,39 +26,6 @@ namespace Tourney_Tracker.DataAccess
             return db.Query<Participant>(sql, new { id });
         }
 
-        // Get GameParticipants by Game Id //
-        internal IEnumerable<GameParticipant> SelectGameParticipantsByGameId(int id)
-        {
-            using var db = new SqlConnection(_connectionString);
-
-            var sql = @"SELECT *
-                        FROM GameParticipants
-                        WHERE GameId = @id";
-
-            return db.Query<GameParticipant>(sql, new { id });
-        }
-
-        // Get Participants by GameParticipants //
-        internal IEnumerable<Participant> SelectParticipantsByGameParticipants(List<GameParticipant> gameParticipants)
-        {
-            using var db = new SqlConnection(_connectionString);
-
-            var participants = new List<Participant>();
-
-            for (int i = 0; i < gameParticipants.Count; i++)
-            {
-                var sql = @"SELECT *
-                            FROM Participants
-                            WHERE Id = @id";
-
-                var id = gameParticipants[i].ParticipantId;
-
-                participants.Add((Participant)db.Query<Participant>(sql, new { id }));
-            }
-
-            return participants;
-        }
-
         // Get Participant by Id //
         internal Participant SelectParticipantById(int id)
         {
@@ -70,6 +37,18 @@ namespace Tourney_Tracker.DataAccess
 
 
             return db.QueryFirstOrDefault<Participant>(sql, new { id });
+        }
+
+        // Get Elo by LeagueId //
+        internal int SelectLeagueById(int id)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"SELECT StartingRating
+                        FROM Leagues
+                        WHERE Id = @id";
+
+            return db.QueryFirstOrDefault<int>(sql, new { id });
         }
 
         // Add New Participant //
