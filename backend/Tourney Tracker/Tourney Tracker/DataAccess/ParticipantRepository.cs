@@ -26,51 +26,6 @@ namespace Tourney_Tracker.DataAccess
             return db.Query<Participant>(sql, new { id });
         }
 
-        // Get GameParticipants by Game Id //
-        internal IEnumerable<GameParticipant> SelectGameParticipantsByGameId(int id)
-        {
-            using var db = new SqlConnection(_connectionString);
-
-            var sql = @"SELECT *
-                        FROM GameParticipants
-                        WHERE GameId = @id";
-
-            return db.Query<GameParticipant>(sql, new { id });
-        }
-
-        // Get Participants by GameParticipants //
-        internal ParticipantsDto SelectParticipantsByGameParticipants(List<GameParticipant> gameParticipants)
-        {
-            using var db = new SqlConnection(_connectionString);
-
-            var team0 = new List<Participant>();
-            var team1 = new List<Participant>();
-
-            for (int i = 0; i < gameParticipants.Count; i++)
-            {
-                var sql = @"SELECT *
-                            FROM Participants
-                            WHERE Id = @id";
-
-                var id = gameParticipants[i].ParticipantId;
-
-                var result = db.QueryFirstOrDefault<Participant>(sql, new { id });
-
-                if (gameParticipants[i].Team)
-                { team1.Add(result); }
-                else
-                { team0.Add(result); }
-            }
-
-            ParticipantsDto participants = new ParticipantsDto
-            {
-                Team0 = team0,
-                Team1 = team1
-            };
-
-            return participants;
-        }
-
         // Get Participant by Id //
         internal Participant SelectParticipantById(int id)
         {

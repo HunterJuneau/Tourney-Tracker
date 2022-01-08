@@ -14,7 +14,7 @@ export default function LeagueForm({ leagueId }) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		createParticipant({ leagueId: Number.parseInt(leagueId), name }).then(() =>
+		createParticipant({ leagueId, name }).then(() =>
 			navigate(`/league/${leagueId}`),
 		);
 	};

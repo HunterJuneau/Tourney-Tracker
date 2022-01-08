@@ -61,7 +61,7 @@ export default function LeagueView() {
 			</Nav>
 			<TabContent activeTab={tab}>
 				<TabPane tabId='1'>
-					<GamesPane games={games} />
+					<GamesPane isOwner={isOwner} leagueId={league.id} games={games} />
 				</TabPane>
 				<TabPane tabId='2'>
 					<ParticipantsPane isOwner={isOwner} leagueId={league.id} participants={participants} />

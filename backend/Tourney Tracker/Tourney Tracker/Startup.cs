@@ -24,7 +24,6 @@ namespace Tourney_Tracker
             services.AddCors();
 
             services.AddSingleton<IConfiguration>(Configuration);
-            services.AddTransient<GameParticipantRepository>();
             services.AddTransient<GameRepository>();
             services.AddTransient<LeagueRepository>();
             services.AddTransient<ParticipantRepository>();

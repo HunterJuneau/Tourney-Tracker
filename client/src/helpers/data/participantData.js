@@ -4,15 +4,15 @@ import dbUrl from '../apiKeys';
 const getLeagueParticipants = (leagueId) =>
 	new Promise((resolve, reject) => {
 		axios
-			.get(`${dbUrl}/Participant/${leagueId}`)
+			.get(`${dbUrl}/Participant/league/${leagueId}`)
 			.then((response) => resolve(response.data))
 			.catch(reject);
 	});
 
-const getGameParticipants = (gameId) =>
+const getParticipant = (id) =>
 	new Promise((resolve, reject) => {
 		axios
-			.get(`${dbUrl}/Participant/game/${gameId}`)
+			.get(`${dbUrl}/Participant/${id}`)
 			.then((response) => resolve(response.data))
 			.catch(reject);
 	});
@@ -22,4 +22,4 @@ const createParticipant = (participant) =>
 		axios.post(`${dbUrl}/Participant`, participant).then(resolve).catch(reject);
 	});
 
-export { getLeagueParticipants, getGameParticipants, createParticipant };
+export { getLeagueParticipants, getParticipant, createParticipant };
