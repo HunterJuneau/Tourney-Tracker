@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import LeagueForm from '../components/forms/LeagueForm';
 
 export default function LeagueFormView() {

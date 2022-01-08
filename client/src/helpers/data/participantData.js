@@ -17,4 +17,9 @@ const getGameParticipants = (gameId) =>
 			.catch(reject);
 	});
 
-export { getLeagueParticipants, getGameParticipants };
+const createParticipant = (participant) =>
+	new Promise((resolve, reject) => {
+		axios.post(`${dbUrl}/Participant`, participant).then(resolve).catch(reject);
+	});
+
+export { getLeagueParticipants, getGameParticipants, createParticipant };

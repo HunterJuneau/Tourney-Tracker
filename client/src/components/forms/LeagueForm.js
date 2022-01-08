@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { createLeague } from '../../helpers/data/leagueData';
 
@@ -12,7 +12,7 @@ export default function LeagueForm() {
 		minimumRating: '',
 		startingRating: '',
 	});
-  let navigate = useNavigate();
+	let navigate = useNavigate();
 
 	const handleInputChange = (e) => {
 		setLeague((prevState) => ({
@@ -30,9 +30,7 @@ export default function LeagueForm() {
 		newLeague.minimumRating = Number.parseInt(league.minimumRating);
 		newLeague.startingRating = Number.parseInt(league.startingRating);
 
-		createLeague(newLeague);
-
-		navigate('/')
+		createLeague(newLeague).then(() => navigate('/'));
 	};
 
 	return (
