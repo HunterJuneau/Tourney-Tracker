@@ -22,4 +22,9 @@ const createParticipant = (participant) =>
 		axios.post(`${dbUrl}/Participant`, participant).then(resolve).catch(reject);
 	});
 
-export { getLeagueParticipants, getParticipant, createParticipant };
+const deleteParticipant = (participantId) =>
+	new Promise((resolve, reject) => {
+		axios.delete(`${dbUrl}/Participant/${participantId}`).then(resolve).catch(reject);
+	});
+
+export { getLeagueParticipants, getParticipant, createParticipant, deleteParticipant };

@@ -30,4 +30,15 @@ const createLeague = (league) =>
 		axios.post(`${dbUrl}/League`, league).then(resolve).catch(reject);
 	});
 
-export { getPublicLeagues, getUserLeagues, getLeague, createLeague };
+const deleteLeague = (leagueId) =>
+	new Promise((resolve, reject) => {
+		axios.delete(`${dbUrl}/League/${leagueId}`).then(resolve).catch(reject);
+	});
+
+export {
+	getPublicLeagues,
+	getUserLeagues,
+	getLeague,
+	createLeague,
+	deleteLeague,
+};
