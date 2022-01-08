@@ -49,9 +49,9 @@ namespace Tourney_Tracker.DataAccess
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"INSERT INTO Games(LeagueId, Date, IsFinal, Winner)
+            var sql = @"INSERT INTO Games(LeagueId, Date, IsFinal, Winner, Participant0, Participant1)
                         OUTPUT inserted.Id
-                        VALUES (@leagueId, @date, @isFinal, @winner)";
+                        VALUES (@leagueId, @date, @isFinal, @winner, @participant0, @participant1)";
 
             return db.QueryFirstOrDefault<int>(sql, newGame);
         }

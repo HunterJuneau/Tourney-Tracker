@@ -10,15 +10,19 @@ namespace Tourney_Tracker.Controllers
     public class ParticipantController : ControllerBase
     {
         ParticipantRepository _repo;
-        public ParticipantController(ParticipantRepository repo)
+        LeagueRepository _repo2;
+        public ParticipantController(ParticipantRepository repo, LeagueRepository repo2)
         {
             _repo = repo;
+            _repo2 = repo2;
         }
 
         // Get Participants by LeagueId //
-        [HttpGet("{leagueId}")]
+        [HttpGet("league/{leagueId}")]
         public IActionResult GetParticipantsByLeagueId(int leagueId)
         {
+            _repo2.CalculateLeagueElo(leagueId);
+
             var participants = _repo.SelectParticipantsByLeagueId(leagueId);
 
             if (participants == null)
@@ -29,20 +33,11 @@ namespace Tourney_Tracker.Controllers
             return Ok(participants);
         }
 
-        // Get Participants by GameId //
-        [HttpGet("game/{gameId}")]
-        public IActionResult GetParticipantsByGameId(int gameId)
+        // Get Participant by Id //
+        [HttpGet("{id}")]
+        public IActionResult GetParticipantById(int id)
         {
-            var gameParticipants = _repo.SelectGameParticipantsByGameId(gameId);
-
-            var participants = _repo.SelectParticipantsByGameParticipants(gameParticipants.ToList());
-
-            if (participants == null)
-            {
-                return NotFound($"No Participants with the gameId of {gameId} was found.");
-            }
-
-            return Ok(participants); 
+            return Ok(_repo.SelectParticipantById(id));
         }
 
         // Add Participants //

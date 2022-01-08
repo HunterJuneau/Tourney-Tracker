@@ -9,10 +9,4 @@ namespace Tourney_Tracker.Models
         public string Name { get; set; }
         public int Elo { get; set; }
     }
-
-    public class ParticipantsDto
-    {
-        public List<Participant> Team0 { get; set; }
-        public List<Participant> Team1 { get; set; }
-    }
 }
