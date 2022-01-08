@@ -84,6 +84,18 @@ namespace Tourney_Tracker.DataAccess
             return db.QueryFirstOrDefault<Participant>(sql, new { id });
         }
 
+        // Get Elo by LeagueId //
+        internal int SelectLeagueById(int id)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"SELECT StartingRating
+                        FROM Leagues
+                        WHERE Id = @id";
+
+            return db.QueryFirstOrDefault<int>(sql, new { id });
+        }
+
         // Add New Participant //
         internal int InsertParticipant(Participant newParticipant)
         {
