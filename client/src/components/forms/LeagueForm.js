@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { createLeague } from '../../helpers/data/leagueData';
+import {
+	createLeague,
+	getLeague,
+	updateLeague,
+} from '../../helpers/data/leagueData';
 
-export default function LeagueForm() {
+export default function LeagueForm({ id }) {
 	const [league, setLeague] = useState({
 		ownerId: 1,
 		name: '',
@@ -13,6 +17,21 @@ export default function LeagueForm() {
 		startingRating: '',
 	});
 	let navigate = useNavigate();
+
+	useEffect(() => {
+		if (id) {
+			getLeague(id).then((response) => {
+				setLeague({
+					ownerId: 1,
+					name: response.name,
+					description: response.description,
+					isPrivate: response.isPrivate,
+					minimumRating: response.minimumRating,
+					startingRating: response.startingRating,
+				});
+			});
+		}
+	}, [id]);
 
 	const handleInputChange = (e) => {
 		setLeague((prevState) => ({
@@ -29,8 +48,12 @@ export default function LeagueForm() {
 
 		newLeague.minimumRating = Number.parseInt(league.minimumRating);
 		newLeague.startingRating = Number.parseInt(league.startingRating);
-
-		createLeague(newLeague).then(() => navigate('/'));
+		if (id) {
+			newLeague.id = id;
+			updateLeague(id, newLeague).then(() => navigate(`/`));
+		} else {
+			createLeague(newLeague).then(() => navigate('/'));
+		}
 	};
 
 	return (

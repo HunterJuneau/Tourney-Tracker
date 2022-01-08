@@ -86,7 +86,7 @@ namespace Tourney_Tracker.DataAccess
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"UPDATE Participants
-                        SET Name = @name, Elo = @elo,
+                        SET Name = @name
                         OUTPUT inserted.*
                         WHERE Id = @id";
             participant.Id = id;

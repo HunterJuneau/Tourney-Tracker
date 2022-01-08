@@ -72,7 +72,7 @@ namespace Tourney_Tracker.Controllers
         }
 
         // Update League //
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult PutLeague(int id, League league)
         {
             var leagueToUpdate = _repo.SelectLeagueById(id);

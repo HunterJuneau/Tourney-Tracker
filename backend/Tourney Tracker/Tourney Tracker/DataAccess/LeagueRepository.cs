@@ -150,7 +150,7 @@ namespace Tourney_Tracker.DataAccess
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"UPDATE Leagues
-                        SET OwnerId = @ownerId, Name = @name, Description = @description, IsPrivate = @isPrivate, MinimumRating = @minimumRating, StartingRating = @startingRating,
+                        SET OwnerId = @ownerId, Name = @name, Description = @description, IsPrivate = @isPrivate, MinimumRating = @minimumRating, StartingRating = @startingRating
                         OUTPUT inserted.*
                         WHERE Id = @id";
             league.Id = id;

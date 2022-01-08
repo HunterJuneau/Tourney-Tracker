@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { createGame } from '../../helpers/data/gameData';
+import { createGame, getGame, updateGame } from '../../helpers/data/gameData';
 
-export default function LeagueForm({ participants, leagueId }) {
+export default function LeagueForm({ participants, gameId, leagueId }) {
 	const [game, setGame] = useState({
+		leagueId,
 		date: '',
 		isFinal: false,
 		winner: false,
@@ -12,6 +13,21 @@ export default function LeagueForm({ participants, leagueId }) {
 		participant1: '',
 	});
 	let navigate = useNavigate();
+
+	useEffect(() => {
+		if (gameId) {
+			getGame(gameId).then((response) => {
+				setGame({
+					leagueId: response.leagueId,
+					date: response.date,
+					isFinal: response.isFinal,
+					winner: response.winner,
+					participant0: response.participant0,
+					participant1: response.participant1,
+				});
+			});
+		}
+	}, [gameId]);
 
 	const handleInputChange = (e) => {
 		setGame((prevState) => ({
@@ -25,7 +41,7 @@ export default function LeagueForm({ participants, leagueId }) {
 		e.preventDefault();
 
 		const newGame = {
-			leagueId,
+			leagueId: game.leagueId,
 			date: game.date,
 			isFinal: game.isFinal,
 			winner: game.winner === 'true',
@@ -36,7 +52,13 @@ export default function LeagueForm({ participants, leagueId }) {
 		if (newGame.participant0 === newGame.participant1) {
 			alert('Participant 1 and Participant 2 must be different!');
 		} else {
-			createGame(newGame).then(() => navigate(`/league/${leagueId}`));
+			if (gameId) {
+				updateGame(gameId, newGame).then(() =>
+					navigate(`/league/${newGame.leagueId}`),
+				);
+			} else {
+				createGame(newGame).then(() => navigate(`/league/${leagueId}`));
+			}
 		}
 	};
 
