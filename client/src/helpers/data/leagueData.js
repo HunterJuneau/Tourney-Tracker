@@ -35,10 +35,16 @@ const deleteLeague = (leagueId) =>
 		axios.delete(`${dbUrl}/League/${leagueId}`).then(resolve).catch(reject);
 	});
 
+const updateLeague = (id, league) =>
+	new Promise((resolve, reject) => {
+		axios.put(`${dbUrl}/League/${id}`, league).then(resolve).catch(reject);
+	});
+
 export {
 	getPublicLeagues,
 	getUserLeagues,
 	getLeague,
 	createLeague,
 	deleteLeague,
+	updateLeague,
 };

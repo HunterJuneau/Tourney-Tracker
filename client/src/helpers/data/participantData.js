@@ -24,7 +24,24 @@ const createParticipant = (participant) =>
 
 const deleteParticipant = (participantId) =>
 	new Promise((resolve, reject) => {
-		axios.delete(`${dbUrl}/Participant/${participantId}`).then(resolve).catch(reject);
+		axios
+			.delete(`${dbUrl}/Participant/${participantId}`)
+			.then(resolve)
+			.catch(reject);
 	});
 
-export { getLeagueParticipants, getParticipant, createParticipant, deleteParticipant };
+const updateParticipant = (id, participant) =>
+	new Promise((resolve, reject) => {
+		axios
+			.put(`${dbUrl}/Participant/${id}`, participant)
+			.then(resolve)
+			.catch(reject);
+	});
+
+export {
+	getLeagueParticipants,
+	getParticipant,
+	createParticipant,
+	deleteParticipant,
+	updateParticipant,
+};

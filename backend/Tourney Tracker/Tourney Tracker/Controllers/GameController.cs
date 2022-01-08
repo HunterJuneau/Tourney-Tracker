@@ -58,7 +58,7 @@ namespace Tourney_Tracker.Controllers
         }
 
         // Update Game //
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult PutGame(int id, Game game)
         {
             var gameToUpdate = _repo.SelectGameById(id);
