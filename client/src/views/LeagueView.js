@@ -71,7 +71,7 @@ export default function LeagueView() {
 					/>
 				</TabPane>
 				<TabPane tabId='3'>
-					<InfoPane league={league} />
+					<InfoPane league={league} isOwner={isOwner} />
 				</TabPane>
 			</TabContent>
 		</>
