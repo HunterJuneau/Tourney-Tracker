@@ -7,7 +7,7 @@ export default function ParticipantFormView() {
 	return (
 		<>
 			<h1>New Participant Form</h1>
-			<ParticipantForm leagueId={leagueId} />
+			<ParticipantForm leagueId={Number.parseInt(leagueId)} />
 		</>
 	);
 }

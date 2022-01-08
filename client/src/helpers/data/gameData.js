@@ -9,4 +9,9 @@ const getLeagueGames = (leagueId) =>
 			.catch(reject);
 	});
 
-export { getLeagueGames };
+const createGame = (game) =>
+	new Promise((resolve, reject) => {
+		axios.post(`${dbUrl}/Game`, game).then(resolve).catch(reject);
+	});
+
+export { getLeagueGames, createGame };
