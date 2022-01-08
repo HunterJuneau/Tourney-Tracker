@@ -68,7 +68,12 @@ namespace Tourney_Tracker.DataAccess
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"DELETE 
+            var sql = @"DELETE
+                        FROM Games
+                        WHERE Participant0 = @id
+                        OR Participant1 = @id
+ 
+                        DELETE 
                         FROM Participants
                         WHERE Id = @id";
 

@@ -15,7 +15,7 @@ export default function ParticipantsPane({ isOwner, leagueId, participants }) {
 			)}
 			<div>
 				{participants.map((participant) => (
-					<ParticipantCard key={participant.id} participant={participant} />
+					<ParticipantCard key={participant.id} participant={participant} isOwner={isOwner} />
 				))}
 			</div>
 		</>
