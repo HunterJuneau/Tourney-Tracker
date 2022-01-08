@@ -49,6 +49,10 @@ namespace Tourney_Tracker.Controllers
         [HttpPost]
         public IActionResult PostParticipant(Participant newParticipant)
         {
+            int leagueElo = _repo.SelectLeagueById(newParticipant.LeagueId);
+
+            newParticipant.Elo = leagueElo;
+
             return Ok(_repo.InsertParticipant(newParticipant));
         }
 
