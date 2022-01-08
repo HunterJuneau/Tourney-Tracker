@@ -29,7 +29,7 @@ const deleteGame = (gameId) =>
 
 const updateGame = (id, game) =>
 	new Promise((resolve, reject) => {
-		axios.put(`${dbUrl}/Game/${id}`, game).then(resolve, reject).catch(reject);
+		axios.put(`${dbUrl}/Game/${id}`, game).then(resolve).catch(reject);
 	});
 
 export { getLeagueGames, getGame, createGame, deleteGame, updateGame };

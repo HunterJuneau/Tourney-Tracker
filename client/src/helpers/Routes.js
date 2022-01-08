@@ -13,6 +13,7 @@ export default function Routes() {
 			<Route path='/my-leagues' element={<HomeView isPublic={false} />} />
 			<Route path='/league/new' element={<LeagueFormView />} />
 			<Route path='/league/:id' element={<LeagueView />} />
+			<Route path='/league/edit/:id' element={<LeagueFormView />} />
 			<Route
 				path='/league/add-participant/:leagueId'
 				element={<ParticipantFormView />}

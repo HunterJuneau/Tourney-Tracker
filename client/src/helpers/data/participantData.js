@@ -34,7 +34,7 @@ const updateParticipant = (id, participant) =>
 	new Promise((resolve, reject) => {
 		axios
 			.put(`${dbUrl}/Participant/${id}`, participant)
-			.then(resolve, reject)
+			.then(resolve)
 			.catch(reject);
 	});
 
