@@ -24,7 +24,7 @@ export default function GameFormView() {
 
 	return (
 		<>
-			<h1>New Game Form</h1>
+			<h1>{gameId ? 'Edit Game' : 'New Game'}</h1>
 			<GameForm
 				leagueId={Number.parseInt(leagueId)}
 				gameId={Number.parseInt(gameId)}
