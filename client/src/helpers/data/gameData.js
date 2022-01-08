@@ -14,4 +14,9 @@ const createGame = (game) =>
 		axios.post(`${dbUrl}/Game`, game).then(resolve).catch(reject);
 	});
 
-export { getLeagueGames, createGame };
+const deleteGame = (gameId) =>
+	new Promise((resolve, reject) => {
+		axios.delete(`${dbUrl}/Game/${gameId}`).then(resolve).catch(reject);
+	});
+
+export { getLeagueGames, createGame, deleteGame };

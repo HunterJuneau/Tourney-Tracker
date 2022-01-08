@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { createGame } from '../../helpers/data/gameData';
@@ -24,21 +24,20 @@ export default function LeagueForm({ participants, leagueId }) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-    const newGame = {
-      leagueId,
-      date: game.date,
-      isFinal: game.isFinal,
-      winner: game.winner === 'true',
-      participant0: Number.parseInt(game.participant0),
-      participant1: Number.parseInt(game.participant1),
-    }
-    if (newGame.participant0 === newGame.participant1) {
-      alert('Participant 1 and Participant 2 must be different!')
-    } else {
-      createGame(newGame).then(() =>
-			navigate(`/league/${leagueId}`),
-		)
-    }
+		const newGame = {
+			leagueId,
+			date: game.date,
+			isFinal: game.isFinal,
+			winner: game.winner === 'true',
+			participant0: Number.parseInt(game.participant0),
+			participant1: Number.parseInt(game.participant1),
+		};
+
+		if (newGame.participant0 === newGame.participant1) {
+			alert('Participant 1 and Participant 2 must be different!');
+		} else {
+			createGame(newGame).then(() => navigate(`/league/${leagueId}`));
+		}
 	};
 
 	return (
@@ -112,7 +111,13 @@ export default function LeagueForm({ participants, leagueId }) {
 			</FormGroup>
 			<FormGroup>
 				<Label for='date'>Date</Label>
-				<Input id='date' name='date' type='datetime-local' onChange={handleInputChange} value={game.date} />
+				<Input
+					id='date'
+					name='date'
+					type='datetime-local'
+					onChange={handleInputChange}
+					value={game.date}
+				/>
 			</FormGroup>
 			<Button type='submit'>Submit</Button>
 		</Form>

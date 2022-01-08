@@ -41,7 +41,7 @@ namespace Tourney_Tracker.Controllers
         }
 
         // Delete User by Id //
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteUser(string userId)
         {
             _repo.DeleteUserById(userId);

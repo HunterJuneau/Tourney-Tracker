@@ -52,7 +52,7 @@ namespace Tourney_Tracker.Controllers
         }
 
         // Delete Participant //
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteParticipant(int id)
         {
             _repo.DeleteParticipantById(id);

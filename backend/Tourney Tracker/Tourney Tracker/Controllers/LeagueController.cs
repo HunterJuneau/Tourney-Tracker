@@ -64,7 +64,7 @@ namespace Tourney_Tracker.Controllers
         }
 
         // Delete League //
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteLeague(int id)
         {
             _repo.DeleteLeagueById(id);
