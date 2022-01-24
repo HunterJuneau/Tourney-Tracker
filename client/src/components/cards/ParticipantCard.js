@@ -9,15 +9,17 @@ export default function ParticipantCard({ participant, isOwner }) {
 	};
 
 	return (
-		<Card color='light'>
+		<Card color='light' className='m-3'>
 			<CardBody>
 				<CardTitle tag='h5'>{participant.name}</CardTitle>
 				<CardSubtitle>Rating: {participant.elo}</CardSubtitle>
 				{isOwner ? (
 					<>
-						<Button onClick={deleteThis}>Delete</Button>
+						<Button className='btn btn-danger mx-1' onClick={deleteThis}>
+							Delete
+						</Button>
 						<Link to={`/league/edit-participant/${participant.id}`}>
-							<Button>Edit</Button>
+							<Button className='btn btn-warning mx-1'>Edit</Button>
 						</Link>
 					</>
 				) : (

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function NavBar() {
 	return (
-		<Navbar color='dark' dark>
+		<Navbar className='nav-bar' dark>
 			<NavbarBrand href='/'>Tourney Tracker</NavbarBrand>
 			<Nav className='me-auto' navbar>
 				<NavItem>

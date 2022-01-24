@@ -17,11 +17,11 @@ export default function HomeView({ isPublic }) {
 
 	return (
 		<>
-			<h1>{isPublic ? 'Public' : 'My'} Leagues</h1>
+			<h1 className='m-2'>{isPublic ? 'Public' : 'My'} Leagues</h1>
 			<Link to='/league/new'>
-				<Button type='button'>Add League</Button>
+				<Button className='m-2 btn' type='button'>Add League</Button>
 			</Link>
-			<div>
+			<div className='text-center'>
 				{leagues.map((league) => (
 					<LeagueCard key={league.id} league={league} />
 				))}

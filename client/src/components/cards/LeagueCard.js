@@ -6,7 +6,7 @@ export default function LeagueCard({ league }) {
 	const navigate = useNavigate();
 
 	return (
-		<Card color='light'>
+		<Card className='m-3 league-card' color='light'>
 			<CardBody>
 				<CardTitle tag='h5'>{league.name}</CardTitle>
 				<CardText>{league.description}</CardText>

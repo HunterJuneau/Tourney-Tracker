@@ -8,14 +8,21 @@ export default function GamesPane({ isOwner, leagueId, games }) {
 		<>
 			{isOwner ? (
 				<Link to={`/league/add-game/${leagueId}`}>
-					<Button>Add Game</Button>
+					<Button className='ms-4 my-2'>Add Game</Button>
 				</Link>
 			) : (
 				''
 			)}
-			{games.map((game) => (
-				<GameCard key={game.id} game={game} leagueId={leagueId} isOwner={isOwner} />
-			))}
+			<div className='d-flex flex-wrap m-3 text-center'>
+				{games.map((game) => (
+					<GameCard
+						key={game.id}
+						game={game}
+						leagueId={leagueId}
+						isOwner={isOwner}
+					/>
+				))}
+			</div>
 		</>
 	);
 }

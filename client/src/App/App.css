@@ -3,6 +3,11 @@
   background-color: #2A2137;
 }
 
+.nav-bar {
+  color: #F4F6F5;
+  background-color: #7D7D81;
+}
+
 h1 {
 	color: #F4F6F5;
 }
@@ -10,4 +15,16 @@ h1 {
 Form {
   background-color: #7D7D81;
   color: #F4F6F5;
+}
+
+.pane {
+  background-color: #B8B9B5;
+}
+
+.game-card {
+  color: #2A2137;
+}
+
+.info-pane {
+  background-color: #B8B9B5;
 }

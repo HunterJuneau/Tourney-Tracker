@@ -32,7 +32,7 @@ export default function LeagueView() {
 
 	return (
 		<>
-			<h1>{league.name}</h1>
+			<h1 className='m-3'>{league.name}</h1>
 			<Nav tabs>
 				<NavItem>
 					<NavLink
@@ -59,7 +59,7 @@ export default function LeagueView() {
 					</NavLink>
 				</NavItem>
 			</Nav>
-			<TabContent activeTab={tab}>
+			<TabContent className='pane' activeTab={tab}>
 				<TabPane tabId='1'>
 					<GamesPane isOwner={isOwner} leagueId={league.id} games={games} />
 				</TabPane>
