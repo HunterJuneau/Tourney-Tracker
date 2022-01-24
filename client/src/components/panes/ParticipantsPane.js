@@ -8,14 +8,18 @@ export default function ParticipantsPane({ isOwner, leagueId, participants }) {
 		<>
 			{isOwner ? (
 				<Link to={`/league/add-participant/${leagueId}`}>
-					<Button>Add Participant</Button>
+					<Button className='ms-4 my-2'>Add Participant</Button>
 				</Link>
 			) : (
 				''
 			)}
-			<div>
+			<div className='d-flex flex-wrap m-3 text-center'>
 				{participants.map((participant) => (
-					<ParticipantCard key={participant.id} participant={participant} isOwner={isOwner} />
+					<ParticipantCard
+						key={participant.id}
+						participant={participant}
+						isOwner={isOwner}
+					/>
 				))}
 			</div>
 		</>

@@ -29,8 +29,18 @@ export default function GameCard({ game, leagueId, isOwner }) {
 	};
 
 	return (
-		<Card color='light'>
-			<CardBody>
+		<Card color='light' className='m-3 game-card'>
+			<CardBody className={game.isFinal ? 'game-card' : 'mt-4 game-card'}>
+				{game.isFinal ? (
+					<CardSubtitle
+						tag='h6'
+						className={game.winner ? 'text-end' : 'text-start'}
+					>
+						WINNER
+					</CardSubtitle>
+				) : (
+					''
+				)}
 				<CardTitle tag='h5'>{`${participant0.name || 'not found :('} vs. ${
 					participant1.name || 'not found :('
 				}`}</CardTitle>
@@ -38,9 +48,11 @@ export default function GameCard({ game, leagueId, isOwner }) {
 				<CardText>{game.isFinal ? 'COMPLETED' : ''}</CardText>
 				{isOwner ? (
 					<div>
-						<Button onClick={deleteThis}>Delete</Button>
+						<Button className='btn btn-danger mx-1' onClick={deleteThis}>
+							Delete
+						</Button>
 						<Link to={`/league/edit-game/${game.id}`}>
-							<Button>Edit</Button>
+							<Button className='btn btn-warning mx-1'>Edit</Button>
 						</Link>
 					</div>
 				) : (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteLeague } from '../../helpers/data/leagueData';
-import { Card, CardBody, CardText, Button } from 'reactstrap';
+import { Card, CardBody, CardText, Button, CardSubtitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export default function InfoPane({ league, isOwner }) {
@@ -12,16 +12,25 @@ export default function InfoPane({ league, isOwner }) {
 	};
 
 	return (
-		<Card>
-			<CardBody>
-				<CardText>{league.description}</CardText>
-				<CardText>Minimum Rating: {league.minimumRating}</CardText>
-				<CardText>Starting Rating: {league.startingRating}</CardText>
+		<Card className='text-center'>
+			<CardBody className='info-pane'>
+				<CardSubtitle tag='h4'>Description</CardSubtitle>
+				<CardText className='my-3'>{league.description}</CardText>
+				<CardText>
+					<h6>Minimum Rating</h6>
+					{league.minimumRating}
+				</CardText>
+				<CardText>
+					<h6>Starting Rating</h6>
+					{league.startingRating}
+				</CardText>
 				{isOwner ? (
 					<>
-						<Button onClick={deleteThis}>Delete</Button>
+						<Button className='btn btn-danger mx-2' onClick={deleteThis}>
+							Delete
+						</Button>
 						<Link to={`/league/edit/${league.id}`}>
-							<Button>Edit</Button>
+							<Button className='btn btn-warning mx-2'>Edit</Button>
 						</Link>
 					</>
 				) : (
